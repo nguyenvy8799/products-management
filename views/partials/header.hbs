@@ -23,14 +23,17 @@ Param:
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto h-100">
         <li class="nav-item">
-          <a class="nav-link {{#if (eq pageCode "product")}}active{{/if}}" href="products.html">
+          <a 
+            class="nav-link {{#if (eq pageCode "product")}}active{{/if}}" 
+            href="/products"
+          >
             <i class="fas fa-shopping-cart"></i>
             Products
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {{#if (eq pageCode "account")}}active{{/if}}" href="accounts.html">
+          <a class="nav-link {{#if (eq pageCode "account")}}active{{/if}}" href="/accounts">
             <i class="far fa-user"></i>
             Accounts
           </a>

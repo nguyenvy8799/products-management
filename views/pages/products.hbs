@@ -57,7 +57,12 @@ Param:
             <tbody>
               {{#each categories as |category|}}
                 <tr>
-                  <td class="tm-product-name">{{category.name}}</td>
+                  <td
+                    class="tm-category-name"
+                    data-category-id="{{category._id}}"
+                  >
+                    {{category.name}}
+                  </td>
                   <td class="text-center">
                     <a href="#" class="tm-product-delete-link">
                       <i class="far fa-trash-alt tm-product-delete-icon"></i>
@@ -69,9 +74,12 @@ Param:
           </table>
         </div>
         <!-- table container -->
-        <button class="btn btn-primary btn-block text-uppercase mb-3">
+        <a
+          href="/products/create-category"
+          class="btn btn-primary btn-block text-uppercase mb-3"
+        >
           Add new category
-        </button>
+        </a>
       </div>
     </div>
   </div>
