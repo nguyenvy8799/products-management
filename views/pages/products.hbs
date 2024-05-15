@@ -64,8 +64,14 @@ Param:
                     {{category.name}}
                   </td>
                   <td class="text-center">
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                    <a
+                      href="/products/category/{{category._id}}/delete"
+                      class="tm-category-delete-link"
+                    >
+                      <i
+                        data-category-id="{{category._id}}"
+                        class="far fa-trash-alt tm-product-delete-icon"
+                      ></i>
                     </a>
                   </td>
                 </tr>

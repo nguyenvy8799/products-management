@@ -36,6 +36,26 @@
         }
       );
     });
+
+    $(function() {
+      $(".tm-category-delete-link").on(
+        "click",
+        function(event) {
+          event.preventDefault();
+          const id = event.target.getAttribute("data-category-id");
+
+          // Goi toi url voi method DELETE de yeu cau xoa danh muc
+          $.ajax({
+            url: `/products/category/${id}`,
+            method: "DELETE"
+          })
+          .done(function() {
+            // Reload lai trang
+            window.location.reload();
+          })
+        }
+      )
+    })
   </script>
 </body>
 

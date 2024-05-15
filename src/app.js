@@ -105,6 +105,30 @@ app.post("/products/category/:id", async (req, res) => {
   res.redirect("/products");
 });
 
+app.get("/products/category/:id/delete", async (req, res) => {
+  const id = req.params.id;
+
+  // Xoa danh muc trong MongoDB
+  await CategoryModel.deleteOne({
+    _id: id,
+  });
+
+  res.redirect("/products");
+});
+
+app.delete("/products/category/:id", async (req, res) => {
+  const id = req.params.id;
+
+  // Xoa danh muc trong MongoDB
+  await CategoryModel.deleteOne({
+    _id: id,
+  });
+
+  res.json({
+    status: true,
+  });
+});
+
 // Run app
 app.listen(3000, () => {
   console.log("App is running on port 3000");
