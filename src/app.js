@@ -1,8 +1,26 @@
 import express from "express";
 import { create as createHbs } from "express-handlebars";
+import multer from "multer";
 import { connectMongoDB } from "./db/conn.js";
 import { ProductModel } from "./db/model/product.model.js";
 import { CategoryModel } from "./db/model/category.model.js";
+import mongoose from "mongoose";
+
+const multerUploader = multer({
+  // dest: "public/assets/img",
+  storage: multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "public/assets/img");
+    },
+    filename: function (req, file, cb) {
+      const originalName = file.originalname;
+      const [name, ext] = originalName.split(".");
+      const filename = `${name}-${Date.now()}.${ext}`;
+
+      cb(null, filename);
+    },
+  }),
+});
 
 // Tao app
 const app = express();
@@ -128,6 +146,42 @@ app.delete("/products/category/:id", async (req, res) => {
     status: true,
   });
 });
+
+// Route hien thi trang them moi san pham
+app.get("/products/create-product", async (req, res) => {
+  // Lay danh sach danh muc
+  const categories = await CategoryModel.find().lean();
+
+  res.render("create-product", {
+    pageCode: "product",
+    categories,
+  });
+});
+
+app.post(
+  "/products/create-product",
+  multerUploader.single("image"),
+  async (req, res) => {
+    // Du lieu truyen theo
+    const file = req.file;
+    console.log("Product image file: ", file);
+    const data = req.body;
+    console.log("Product Data: ", data);
+
+    // Tao san pham & luu vao mongoDB
+    const product = new ProductModel({
+      name: data.name,
+      desc: data.desc,
+      price: data.price,
+      unitInStock: data.unitInStock,
+      categoryId: data.categoryId,
+      imageUrl: `/assets/img/${file.filename}`,
+    });
+    await product.save();
+
+    res.redirect("/products");
+  }
+);
 
 // Run app
 app.listen(3000, () => {

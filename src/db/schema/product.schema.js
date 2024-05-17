@@ -22,4 +22,8 @@ export const ProductSchema = new mongoose.Schema({
   categoryId: {
     type: mongoose.Types.ObjectId,
   },
+  // Hinh anh san pham
+  imageUrl: {
+    type: String,
+  },
 });

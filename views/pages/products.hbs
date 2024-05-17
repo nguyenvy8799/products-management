@@ -25,7 +25,13 @@ Param:
               {{#each products as |product|}}
                 <tr>
                   <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">{{product.name}}</td>
+                  <td class="tm-product-name">
+                    <img
+                      style="width: 50px; height: 50px;"
+                      src="{{product.imageUrl}}"
+                    />
+                    {{product.name}}
+                  </td>
                   <td>{{product.desc}}</td>
                   <td>{{product.unitInStock}}</td>
                   <td>{{product.price}}$</td>
@@ -41,7 +47,7 @@ Param:
         </div>
         <!-- table container -->
         <a
-          href="add-product.html"
+          href="/products/create-product"
           class="btn btn-primary btn-block text-uppercase mb-3"
         >Add new product</a>
         <button class="btn btn-primary btn-block text-uppercase">

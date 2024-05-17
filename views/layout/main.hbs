@@ -56,6 +56,17 @@
         }
       )
     })
+
+    $(function() {
+      $('#fileInput').on("change", (event) => {
+        // Lay file da chon
+        const file = event.target.files[0];
+        // Tao object URL
+        const url = URL.createObjectURL(file)
+        // Gan url cho attribute "src" cua the img co id la "product-image-preview"
+        $('#product-image-preview').attr("src", url);
+      })
+    })
   </script>
 </body>
 
