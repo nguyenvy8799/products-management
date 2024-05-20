@@ -13,7 +13,6 @@ const multerUploader = multer({
       cb(null, "public/assets/img");
     },
     filename: function (req, file, cb) {
-      
       const originalName = file.originalname;
       const [name, ext] = originalName.split(".");
       const filename = `${name}-${Date.now()}.${ext}`;
