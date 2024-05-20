@@ -13,7 +13,7 @@ const multerUploader = multer({
       cb(null, "public/assets/img");
     },
     filename: function (req, file, cb) {
-      
+
       const originalName = file.originalname;
       const [name, ext] = originalName.split(".");
       const filename = `${name}-${Date.now()}.${ext}`;
@@ -120,7 +120,6 @@ app.post("/products/category/:id", async (req, res) => {
       },
     }
   );
-
   res.redirect("/products");
 });
 
